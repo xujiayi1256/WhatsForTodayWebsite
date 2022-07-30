@@ -23,7 +23,7 @@ if st.button('Show restaurants!'):
         data = {'area': area}
     st.write(data)
     if data:
-        response = requests.get("https://whats-for-today.herokuapp.com/get", params=data)
+        response = requests.get("https://whats-for-today-backend.herokuapp.com/get", params=data)
         if response.ok:
             st.header('Response: ' + str(response.json()))
         elif response.status_code == 400:
