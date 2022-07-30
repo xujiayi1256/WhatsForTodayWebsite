@@ -56,12 +56,11 @@ if st.button('Show restaurants!'):
     elif area:
         data = {'area': area}
     st.write(data)
-    if data:
-        response = requests.get("https://whats-for-today-backend.herokuapp.com/get", params=data)
-        if response.ok:
-            for restaurant in response.json():
-                st.write(restaurant)
-        elif response.status_code == 400:
-            st.header("Something went wrong: " + str(response.json()))
+    response = requests.get("https://whats-for-today-backend.herokuapp.com/get", params=data)
+    if response.ok:
+        for restaurant in response.json():
+            st.write(restaurant)
+    elif response.status_code == 400:
+        st.header("Something went wrong: " + str(response.json()))
     else:
-        st.write('Cuisine and/or area is required!')
+        st.header("Something went wrong...")
